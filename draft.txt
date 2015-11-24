@@ -1,0 +1,17 @@
+ var uid = Number(req.query.result);
+        var count = 0;
+//        //get that row
+         db.room.find({id: uid }, function(err,suc){
+            if(err||!suc){
+                res.send("no seat find, insert "+uid);  
+                db.room.save(new Seat(uid, 1, null),function(err,saved){
+                    if(err||!saved){
+                        console.log("successfully inserted");
+                    }else{
+                        console.log("failed yo");
+                    }
+                });
+            }else suc.forEach(function(err, seats){
+                console.log(seats);
+            });        
+         });
